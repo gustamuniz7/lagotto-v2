@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tela login</title>
-  <link rel="stylesheet" href="./assets/css/zelda-register-login.css">
+  <link rel="stylesheet" href="assets/css/zelda-register-login.css">
 </head>
 
 <body>
@@ -15,9 +15,24 @@
       <input placeholder="username" type="text" id="ipt_username">
       <input placeholder="********" type="password" id="ipt_passwrd">
     </div>
-    <button>LOGIN</button>
-    <div id="div_resultado"></div>
+    <button onclick="login()">LOGIN</button>
+    <div class="mensagem" id="div_resultado"></div>
   </div>
 </body>
 
 </html>
+
+<script>
+  function login() {
+    const username = ipt_username.value;
+    const passwrd = ipt_passwrd.value;
+
+    if (username == "" || passwrd == "") {
+      div_resultado.innerHTML = `Preencha todos os campos`
+    } else if (passwrd.length < 6) {
+      div_resultado.innerHTML = `Insira uma senha com mais de 6 caracteres`
+    } else {
+      
+    }
+  }
+</script>

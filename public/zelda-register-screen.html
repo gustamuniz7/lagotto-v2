@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tela cadastro</title>
-  <link rel="stylesheet" href="./assets/css/zelda-register-login.css">
+  <link rel="stylesheet" href="assets/css/zelda-register-login.css">
 </head>
 
 <body>
@@ -13,11 +13,30 @@
     <div class="container-filho">
       <h1>REGISTER</h1>
       <input placeholder="username" type="text" id="ipt_username">
-      <input placeholder="********" type="password" id="ipt_passwrd">
+      <input placeholder="senha" type="password" id="ipt_passwrd">
+      <input placeholder="confirmar senha" type="password" id="ipt_confirm_passwrd">
     </div>
-    <button>REGISTER</button>
-    <div id="div_resultado"></div>
+    <button onclick="cadastro()">REGISTER</button>
+    <div class="mensagem" id="div_resultado"></div>
   </div>
 </body>
 
 </html>
+
+<script>
+  function cadastro() {
+    const username = ipt_username.value;
+    const passwrd = ipt_passwrd.value;
+    const confirmar = ipt_confirm_passwrd.value;
+
+    if (username == "" || passwrd == "" || confirmar == "") {
+      div_resultado.innerHTML = `Preencha todos os campos`
+    } else if (passwrd.length < 6) {
+      div_resultado.innerHTML = `Insira uma senha com mais de 6 caracteres`
+    } else if (confirmar !== passwrd) {
+      div_resultado.innerHTML = `Senhas diferentes`
+    } else {
+      
+    }
+  }
+</script>
