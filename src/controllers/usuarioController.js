@@ -76,8 +76,8 @@ function cadastrar(req, res) {
 }
 
 function retornar(req, res) {
-    req.params.idUsuario;
-    usuarioModel.retornar().then((resultado) => {
+    idUsuario = req.params.idUsuario;
+    usuarioModel.retornar(idUsuario).then((resultado) => {
         res.status(200).json(resultado);
     });
 }
