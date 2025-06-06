@@ -104,3 +104,18 @@ h3 {
   color: darkred;
   margin-top: 20px;
 }
+
+select {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  background-color: #33a76d;
+  border: 2px solid #287750;
+  padding: 10px 15px;
+  outline: none;
+  box-shadow: 0 0 5px #287750;
+  width: 300px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgb(102, 102, 102);
+  border-radius: 9.5px;
+}
