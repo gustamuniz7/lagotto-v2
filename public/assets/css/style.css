@@ -1,0 +1,77 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.tudo {
+    background-color: bisque;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    width: 90vw;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#div_jogo {
+    width: 40vw;
+    height: 75vh;
+    background-image: url(assets/image.png);
+    display: grid;
+    grid-template-columns: repeat(10, 4vw);
+    grid-template-rows: repeat(10, 3.72vw);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.espaco {
+    border: 1px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.espaco:hover {
+    background-color: rgba(255, 255, 255, 0.148);
+    cursor: pointer;
+}
+
+.profile {
+    width: 30%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(158, 142, 194);
+    align-items: center;
+    padding-top: 20px;
+    border-radius: 20px;
+}
+
+.link {
+    background-color: rgb(214, 241, 151);
+    border: 20px solid rgb(92, 66, 66);
+    width: 80%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.link img {
+    width: 30%;
+}
+
+.aconteceu {
+    width: 100%;
+    height: 100%;
+}
