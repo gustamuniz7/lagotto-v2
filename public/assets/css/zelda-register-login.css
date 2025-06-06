@@ -70,3 +70,11 @@ body {
   padding: 14px;
   background-color: #00ff00;
 }
+
+.mensagem {
+  -webkit-text-stroke: 0.3px #dbdbdb;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  color: darkred;
+  margin-top: 20px;
+}
