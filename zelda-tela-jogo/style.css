@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Press Start 2P";
 }
 
 .tudo {
@@ -74,4 +78,23 @@
 .aconteceu {
     width: 100%;
     height: 100%;
+}
+
+.score{
+    display: flex;
+    flex-direction: column;
+}
+
+.jogador{
+    display: flex;
+}
+
+.textoJogador{
+    padding: 10px;
+}
+
+.box{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
