@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,11 +25,14 @@
                 <div id="div_jogo"></div>
             </div>
             <div class="profile">
-                <div class="link">
+                Timer:
+                <p id="timer"><button onclick="temporizador()">Começar</button></p>
+                <p id="timerAper"><span id="tempoMin">Você tem 1 minuto</span></p>
+                <div class="link" id="link">
                     <img src="../imgs/linkNormal.png" alt="">
                 </div>
                 <div class="aconteceu">
-                    <p>AAA</p>
+                    <p id="aconteceu_texto">AAA</p>
                 </div>
             </div>
         </div>
@@ -37,13 +40,52 @@
 </body>
 <script>
     function gerar() {
+        let indice = 0
         jogo = document.getElementById("div_jogo")
         for (let x = 0; x < 10; x++) {
-            for (let y = 0; y < 10; y++)
-            jogo.innerHTML += `<div class="espaco" id="${x},${y}"></div>`;
+            for (let y = 0; y < 10; y++) {
+                jogo.innerHTML += `<div class="espaco" id="${indice}" onclick="verificar(id)"></div>`;
+                indice++
+            }
+        }
+    }
+
+    const itensR = ["assets/imgs/inimigo.png"]
+    const itensB = ["assets/imgs/cogumelo.png"]
+
+    function verificar(id) {
+        div = document.getElementById(id)
+        divStatus = div.dataset.status
+        console.log(divStatus)
+        let numero = Math.floor(Math.random() * itensR.length)
+        let numero2 = Math.floor(Math.random() * itensB.length)
+        if (divStatus == 0) {
+            div.innerHTML = `<img src="${itensR[numero]}"></img>`
+            aconteceu_texto.innerText = "Link sofreu um evento inesperado"
+            link.innerHTML = `<img src="../imgs/linkDmg.png"></img>`
+        } else if (divStatus == 1) {
+            div.innerHTML = `<img src="${itensB[numero2]}"></img>`
+            aconteceu_texto.innerText = "Link sofreu um evento inesperado"
+            link.innerHTML = `<img src="../imgs/linkBom.png"></img>`
+        } else {
+            aconteceu_texto.innerText = "Nada aconteceu"
+            link.innerHTML = `<img src="../imgs/linkNormal.png"></img>`
         }
     }
     gerar()
+
+    let timeout;
+    function temporizador() {
+
+        timeout = setTimeout(alertFunc, 60000)
+        document.getElementById("timer").style.display = "none"
+        document.getElementById("timerAper").style.display = "flex"
+    }
+
+    function alertFunc() {
+        alert("Seu tempo acabou!")
+    }
+
 </script>
 
 </html>
