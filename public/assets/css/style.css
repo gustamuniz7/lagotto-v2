@@ -26,7 +26,7 @@
 #div_jogo {
     width: 40vw;
     height: 75vh;
-    background-image: url(assets/image.png);
+    background-image: url(../imgs/image.png);
     display: grid;
     grid-template-columns: repeat(10, 4vw);
     grid-template-rows: repeat(10, 3.72vw);
