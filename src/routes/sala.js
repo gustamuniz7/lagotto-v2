@@ -19,4 +19,8 @@ router.post('/updateContext', function (req, res) {
   partidaController.updateContextShowed(req, res);
 })
 
+router.get('/atualizarpontuacao/:iduser/:pontuacao', function (req, res){
+  partidaController.atualizarPontuacao(req, res);
+})
+
 module.exports = router;

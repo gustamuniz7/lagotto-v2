@@ -87,9 +87,16 @@ const entrarPartida = (req, res) => {
     })
 }
 
+const atualizarPontuacao = (req, res) => {
+    salaModel.atualizarPontuacao(req.params.iduser, req.params.pontuacao).then(response => {
+        res.status(200).json(response);
+    })
+}
+
 module.exports = {
   criarPartida,
   obterPartidaContexto,
   updateContextShowed,
-  entrarPartida
+  entrarPartida,
+  atualizarPontuacao
 }

@@ -28,6 +28,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/sala", salaRouter);
 app.use("/partidas", partidaRouter);
 
+
 app.listen(PORTA_APP, function () {
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  

@@ -18,8 +18,18 @@ const searchRoom = (roomCode) => {
     return database.executar(sqlStatment);
 }
 
+const atualizarPontuacao = (idUser, pontuacao) => {
+    const sqlStatment = `
+        update usuario_partida set pontuacao = ${pontuacao}
+        where id = ${idUser}
+    `;
+
+    return database.executar(sqlStatment);
+}
+
 
 module.exports = {
     createRoom, 
-    searchRoom
+    searchRoom,
+    atualizarPontuacao
 }
