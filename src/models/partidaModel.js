@@ -9,6 +9,12 @@ const createItem = (idPartida, tipo, pos, pontuacao) => {
     return database.executar(sqlStatment);
 }
 
+const obterPartidaContexto = (idPartida) => {
+    const sqlStatment = `
+        select * from item_partida
+    `;
+}
+
 module.exports = {
     createItem
 }
