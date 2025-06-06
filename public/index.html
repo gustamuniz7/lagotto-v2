@@ -39,15 +39,39 @@
     </div>
 </body>
 <script>
+    const idPartida = sessionStorage.ID_PARTIDA;
+    const itemBom = [];
     function gerar() {
-        let indice = 0
         jogo = document.getElementById("div_jogo")
-        for (let x = 0; x < 10; x++) {
-            for (let y = 0; y < 10; y++) {
-                jogo.innerHTML += `<div class="espaco" id="${indice}" onclick="verificar(id)"></div>`;
-                indice++
+        let indice = 0
+        fetch(`/sala/getContext/${idPartida}`, {
+            method: "GET",
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+                resposta.json().then(json => {
+                    for(let i = 0; i < 100; i++){
+                            if(json[i]){
+                                jogo.innerHTML += `<div class="espaco" style='order: ${json[i].pos}' id="${indice}" data-status="${json[i].tipo}" onclick="verificar(${indice})"></div>`;
+                            } else{
+                                jogo.innerHTML += `<div class="espaco" style='order: ${indice}' id="${indice}" data-status="${2}" onclick="verificar(${indice})"></div>`;
+                            }
+                            indice++
+                        }
+                    });
+
+            } else {
+
+                console.log("Houve um erro a buscar partida");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
             }
-        }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
     }
 
     const itensR = ["assets/imgs/inimigo.png"]
@@ -56,20 +80,23 @@
     function verificar(id) {
         div = document.getElementById(id)
         divStatus = div.dataset.status
+        console.log(divStatus);
         console.log(divStatus)
+
         let numero = Math.floor(Math.random() * itensR.length)
         let numero2 = Math.floor(Math.random() * itensB.length)
         if (divStatus == 0) {
             div.innerHTML = `<img src="${itensR[numero]}"></img>`
             aconteceu_texto.innerText = "Link sofreu um evento inesperado"
-            link.innerHTML = `<img src="../imgs/linkDmg.png"></img>`
+            link.innerHTML = `<img src="./assets/imgs/linkDmg.png"></img>`
         } else if (divStatus == 1) {
             div.innerHTML = `<img src="${itensB[numero2]}"></img>`
             aconteceu_texto.innerText = "Link sofreu um evento inesperado"
-            link.innerHTML = `<img src="../imgs/linkBom.png"></img>`
+            link.innerHTML = `<img src="./assets/imgs/linkBom.png"></img>`
         } else {
+            div.style.background = 'rgba(0,0,0,0.5)'
             aconteceu_texto.innerText = "Nada aconteceu"
-            link.innerHTML = `<img src="../imgs/linkNormal.png"></img>`
+            link.innerHTML = `<img src="./assets/imgs/linkNormal.png"></img>`
         }
     }
     gerar()
