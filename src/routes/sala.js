@@ -7,4 +7,8 @@ router.post('/create', function (req, res) {
   partidaController.criarPartida(req, res)
 })
 
+router.get('/getContext/:idPartida', function(req, res){
+  partidaController.obterPartidaContexto(req, res);
+});
+
 module.exports = router;

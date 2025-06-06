@@ -66,6 +66,13 @@ function criarPartida(req, res){
   res.status(200).json(codigoTexto);
 }
 
+const obterPartidaContexto = (req, res) => {
+    partidaModel.obterPartidaContexto(req.params.idPartida).then((result) => {
+        res.status(200).json(result);
+    })
+}
+
 module.exports = {
-  criarPartida
+  criarPartida,
+  obterPartidaContexto
 }
