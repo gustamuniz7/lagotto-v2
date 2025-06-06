@@ -34,6 +34,5 @@ create table item_partida(
     fkpartida int,
     fkitem int,
     
-    foreign key(fkpartida) references partida(id),
-    foreign key(fkitem) references item(id)
+    foreign key(fkpartida) references partida(id)
 );
