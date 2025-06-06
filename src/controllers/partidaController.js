@@ -1,6 +1,15 @@
 var salaModel = require("../models/salaModel");
 var partidaModel = require("../models/partidaModel");
 
+function updateContextShowed(req, res){
+    const idPartida = req.body.idPartida;
+    const id = req.body.id;
+
+    partidaModel.updatePartidaContext(id, idPartida).then((aa) => {
+        res.status(200).json(aa);
+    })
+}
+
 function criarPartida(req, res){
   dificuldade = req.body.dificuldade;
   let qtdeBomba;
@@ -74,5 +83,6 @@ const obterPartidaContexto = (req, res) => {
 
 module.exports = {
   criarPartida,
-  obterPartidaContexto
+  obterPartidaContexto,
+  updateContextShowed
 }

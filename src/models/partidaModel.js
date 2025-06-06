@@ -18,8 +18,18 @@ const obterPartidaContexto = (idPartida) => {
     return database.executar(sqlStatment);
 }
 
+const updatePartidaContext = (id, fkpartida) => {
+    const sqlStatment = `
+        update item_partida set revelado = 1
+        where id = ${id} and fkpartida = ${fkpartida};
+    `;
+
+
+    return database.executar(sqlStatment)
+}
+
 module.exports = {
     createItem,
     obterPartidaContexto,
-    
+    updatePartidaContext
 }
