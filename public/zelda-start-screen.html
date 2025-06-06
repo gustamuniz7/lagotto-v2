@@ -62,20 +62,7 @@
   }
 
   function gerarCodigo() {
-
-    fetch('/sala/create', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        'dificuldade': 1
-      })
-    }).then((res) => {
-      res.json().then((aa) => {
-        div_codigo.innerHTML = `Código = ${aa}`
-      })
-    })
+    div_codigo.innerHTML = `Código = ${codigo}`
   }
 
   function entrarSala() {
