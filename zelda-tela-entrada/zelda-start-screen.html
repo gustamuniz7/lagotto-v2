@@ -10,7 +10,7 @@
 
 <body>
   <h1>LAGOTTOS</h1>
-   <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+  <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
   <div id="div_resultado"></div>
   <button onclick="criar()">CREATE GAME</button>
   <button onclick="entrar()">FIND GAME</button>
@@ -27,13 +27,13 @@
     var b_usuario = document.getElementById("b_usuario");
 
     if (nome != null) {
-        b_usuario.innerHTML = nome;
-    } 
+      b_usuario.innerHTML = nome;
     }
+  }
 
-  function criar(){
+  function criar() {
     div_exibir.innerHTML =
-        `       
+      `       
             <div class="container">
                 <h2>Criando Sala</h2>
                 
@@ -44,9 +44,9 @@
 
   }
 
-  function entrar(){
- div_exibir.innerHTML =
-        `       
+  function entrar() {
+    div_exibir.innerHTML =
+      `       
             <div class="container">
                 <h2>Insira o Código da Sala</h2>
 
@@ -58,18 +58,18 @@
                 <br/>`
   }
 
-  function gerarCodigo(){
+  function gerarCodigo() {
     div_codigo.innerHTML = `Código = ${codigo}`
   }
 
-  function entrarSala(){
+  function entrarSala() {
     var codigoInserido = ipt_codigo.value
 
-    if (codigoInserido == codigo){
+    if (codigoInserido == codigo) {
       div_sala.innerHTML = `Entrando na sala`
     } else {
       div_sala.innerHTML = `Código incorreto`
     }
   }
- 
+
 </script>
