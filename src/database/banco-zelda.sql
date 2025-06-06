@@ -4,7 +4,8 @@ use jogo_alg;
 
 create table usuario(
 	id int primary key auto_increment,
-    nome varchar(255) not null unique
+    nome varchar(255) not null unique,
+    senha varchar(255) not null
 );
 
 
@@ -17,7 +18,7 @@ create table partida(
 create table usuario_partida(
 	id int primary key auto_increment,
     qtd_vidas tinyint default 3,
-    pontuacao int,
+    pontuacao int default 0,
     fkusuario int,
     fkpartida int,
     
@@ -25,17 +26,11 @@ create table usuario_partida(
     foreign key(fkpartida) references partida(id)
 );
 
-create table item(
-	id int primary key auto_increment,
-    nome varchar(100) not null,
-    tipo boolean not null -- 0 ruim / 1 bom
-);
-
-
 create table item_partida(
 	id int primary key auto_increment,
-    posX int not null,
-    posY int not null,
+    pos int not null,
+    tipo int not null,
+    pontuacao int not null
     fkpartida int,
     fkitem int,
     
