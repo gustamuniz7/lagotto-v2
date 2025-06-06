@@ -9,12 +9,20 @@
 </head>
 
 <body>
+  <div class="container">
+
   <h1>LAGOTTOS</h1>
   <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
   <div id="div_resultado"></div>
   <button onclick="criar()">CREATE GAME</button>
+  <br>
+  <br>
   <button onclick="entrar()">FIND GAME</button>
+  <br>
+  <br>
   <div id="div_exibir"></div>
+
+  </div>
 </body>
 
 </html>
@@ -34,7 +42,7 @@
   function criar() {
     div_exibir.innerHTML =
       `       
-            <div class="container">
+            <div class="sala">
                 <h2>Criando Sala</h2>
                 
                 <button onclick="gerarCodigo()">Gerar codigo da Sala</button>
@@ -47,15 +55,16 @@
   function entrar() {
     div_exibir.innerHTML =
       `       
-            <div class="container">
+            <div class="entrar">
                 <h2>Insira o Código da Sala</h2>
 
-                <input type="text" id="ipt_codigo"
+                <input type="text" id="ipt_codigo">
 
-                <button onclick="entrarSala()">Entrar</button>
-                <div id= "div_sala"> </div>
+              <button onclick="entrarSala()">Entrar</button>
+
+                <div id= "div_sala"></div>
   
-                <br/>`
+                `
   }
 
   function gerarCodigo() {
