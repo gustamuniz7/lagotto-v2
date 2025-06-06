@@ -9,7 +9,11 @@
 </head>
 
 <body>
-    <div id="div_jogo"></div>
+    <div class="tudo">
+        <div class="container">
+            <div id="div_jogo"></div>
+        </div>
+    </div>
 
     <audio controls autoplay muted>
         <source src="../soundtrack/soundtrack.mp3" type="audio/mpeg" >
@@ -21,7 +25,6 @@
         for (let x = 0; x < 10; x++) {
             for (let y = 0; y < 10; y++)
             jogo.innerHTML += `<div class="espaco" id="${x},${y}"></div>`;
-            
         }
     }
     gerar()
