@@ -1,3 +1,22 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.tudo {
+    background-color: bisque;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    width: 90vw;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
 #div_jogo {
     width: 40vw;
     height: 75vh;
