@@ -15,7 +15,6 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var salaRouter = require("./src/routes/sala");
-var jogoRouter = require("./src/routes/jogos");
 var partidaRouter = require("./src/routes/partidas");
 
 app.use(express.json());
@@ -27,7 +26,6 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/sala", salaRouter);
-app.use("/jogo", jogoRouter);
 app.use("/partidas", partidaRouter);
 
 app.listen(PORTA_APP, function () {
