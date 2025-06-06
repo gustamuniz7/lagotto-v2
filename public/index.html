@@ -14,12 +14,10 @@
             <div>
                 <div class="score">
                     <div class="box">
-                        <div class="jogador">Jogador 1 </div>
-                        <div class="jogador">Jogador 2</div>
+                        <div class="jogador">Jogador 1</div>
                     </div>
                     <div class="box">
-                        <div class="textoJogador">Pontuação</div>
-                        <div class="textoJogador">Pontuação </div>
+                        <div class="textoJogador">Pontuação <span id="pontuacaoUsuario"></span></div>
                     </div>
                 </div>
                 <div id="div_jogo"></div>
@@ -52,9 +50,9 @@
                 resposta.json().then(json => {
                     for(let i = 0; i < 100; i++){
                             if(json[i]){
-                                jogo.innerHTML += `<div class="espaco" style='order: ${json[i].pos}' id="${indice}" data-status="${json[i].tipo}" onclick="verificar(${indice})"></div>`;
+                                jogo.innerHTML += `<div class="espaco" style='order: ${json[i].pos}' id="${indice}" data-idquadrado="${json[i].id}" data-status="${json[i].tipo}" data-pontos="${json[i].pontuacao}" onclick="verificar(${indice})"></div>`;
                             } else{
-                                jogo.innerHTML += `<div class="espaco" style='order: ${indice}' id="${indice}" data-status="${2}" onclick="verificar(${indice})"></div>`;
+                                jogo.innerHTML += `<div class="espaco" style='order: ${indice}' id="${indice}" data-status="${2}" data-pontos="0" onclick="verificar(${indice})"></div>`;
                             }
                             indice++
                         }
@@ -76,12 +74,15 @@
 
     const itensR = ["assets/imgs/inimigo.png"]
     const itensB = ["assets/imgs/cogumelo.png"]
+    let totalPontos = 0;
+    const idUsuario = sessionStorage.ID_USUARIO
 
-    function verificar(id) {
+    async function verificar(id) {
         div = document.getElementById(id)
         divStatus = div.dataset.status
         console.log(divStatus);
         console.log(divStatus)
+        let pontos = Number(div.dataset.pontos);
 
         let numero = Math.floor(Math.random() * itensR.length)
         let numero2 = Math.floor(Math.random() * itensB.length)
@@ -89,28 +90,95 @@
             div.innerHTML = `<img src="${itensR[numero]}"></img>`
             aconteceu_texto.innerText = "Link sofreu um evento inesperado"
             link.innerHTML = `<img src="./assets/imgs/linkDmg.png"></img>`
+            pontos = 0;
         } else if (divStatus == 1) {
             div.innerHTML = `<img src="${itensB[numero2]}"></img>`
-            aconteceu_texto.innerText = "Link sofreu um evento inesperado"
+            aconteceu_texto.innerText = "Link achou um item :D"
             link.innerHTML = `<img src="./assets/imgs/linkBom.png"></img>`
         } else {
             div.style.background = 'rgba(0,0,0,0.5)'
             aconteceu_texto.innerText = "Nada aconteceu"
             link.innerHTML = `<img src="./assets/imgs/linkNormal.png"></img>`
+            pontos = 0;
         }
+
+        let idQuadrado = div.dataset.idquadrado;
+        if(idQuadrado){
+
+        fetch(`/sala/updateContext/${idPartida}/${idQuadrado}`, {
+                method: "GET",
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    console.log(resposta);
+                    resposta.json().then(json => {
+                            totalPontos+= pontos;
+                        });
+    
+                } else {
+    
+                    console.log("Houve um erro a buscar partida");
+    
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+    
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+        }
+
+        fetch(`/sala/atualizarpontuacao/${idUsuario}/${pontos}`, {
+            method: "GET",
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+                resposta.json().then(json => {
+                        totalPontos+= pontos;
+                        document.getElementById('pontuacaoUsuario').innerHTML = totalPontos;
+                    });
+
+            } else {
+
+                console.log("Houve um erro a buscar partida");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        });
     }
     gerar()
 
     let timeout;
+    let tempo = 90;
     function temporizador() {
-
-        timeout = setTimeout(alertFunc, 60000)
         document.getElementById("timer").style.display = "none"
         document.getElementById("timerAper").style.display = "flex"
+        
     }
+    
+    timeout = 1000;
+    temporizador();
+    function contar(){
+        document.getElementById("timerAper").innerText = tempo+' seg';
+        if(tempo <= 0){
+            alertFunc();
+        }
+        tempo--;
+    }
+    const tempometro = setInterval( () => {
+        contar();
+    }, timeout);
 
     function alertFunc() {
-        alert("Seu tempo acabou!")
+        if(tempo == 0){
+            clearInterval(tempometro);
+           document.getElementById("timerAper").innerText = 'TEMPO ACABOU!';
+        }
     }
 
 </script>
