@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Press Start 2P";
 }
 
 .tudo {
@@ -22,7 +26,7 @@
 #div_jogo {
     width: 40vw;
     height: 75vh;
-    background-image: url(assets/image.png);
+    background-image: url(../imgs/image.png);
     display: grid;
     grid-template-columns: repeat(10, 4vw);
     grid-template-rows: repeat(10, 3.72vw);
@@ -54,6 +58,7 @@
     align-items: center;
     padding-top: 20px;
     border-radius: 20px;
+    gap: 2rem;
 }
 
 .link {
@@ -72,6 +77,36 @@
 }
 
 .aconteceu {
+    width: 80%;
+    height: 100%;
+    background-image: url(assets/tapete.png);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 15px;
+}
+
+.aconteceu p {
+    color: white;
+    backdrop-filter: blur(3px);
     width: 100%;
     height: 100%;
+}
+
+.score{
+    display: flex;
+    flex-direction: column;
+}
+
+.jogador{
+    display: flex;
+}
+
+.textoJogador{
+    padding: 10px;
+}
+
+.box{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }

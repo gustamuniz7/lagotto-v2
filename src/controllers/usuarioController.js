@@ -23,17 +23,9 @@ function autenticar(req, res) {
 
                         if (resultadoAutenticar.length == 1) {
                             res.json({
-                                idUsuario: resultadoAutenticar[0].idUsuario,
-                                email: resultadoAutenticar[0].email,
+                                idUsuario: resultadoAutenticar[0].id,
                                 nome: resultadoAutenticar[0].nome,
                                 senha: resultadoAutenticar[0].senha,
-                                username: resultadoAutenticar[0].username,
-                                categoria: resultadoAutenticar[0].categoria_favorita,
-
-                                idPerfil: resultadoAutenticar[0].idUsuario,
-                                nomePerfil: resultadoAutenticar[0].nome,
-                                usernamePerfil: resultadoAutenticar[0].username,
-                                categoriaPerfil: resultadoAutenticar[0].categoria_favorita
                             });
                         } else {
                             res.status(204).json();
@@ -56,23 +48,16 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var username = req.body.usernameServer;
-    var categoria = req.body.categoriaServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (username == undefined) {
-        res.status(400).send("Seu usuário está undefined!");
     } else {
 
-        usuarioModel.cadastrar(nome, email, senha, username, categoria)
+        usuarioModel.cadastrar(nome, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -90,8 +75,9 @@ function cadastrar(req, res) {
     }
 }
 
-function listar(req, res) {
-    usuarioModel.listar().then((resultado) => {
+function retornar(req, res) {
+    req.params.idUsuario;
+    usuarioModel.retornar().then((resultado) => {
         res.status(200).json(resultado);
     });
 }
@@ -99,5 +85,5 @@ function listar(req, res) {
 module.exports = {
     autenticar,
     cadastrar,
-    listar
+    retornar
 }
