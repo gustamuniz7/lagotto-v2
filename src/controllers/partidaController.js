@@ -2,8 +2,8 @@ var salaModel = require("../models/salaModel");
 var partidaModel = require("../models/partidaModel");
 
 function updateContextShowed(req, res){
-    const idPartida = req.body.idPartida;
-    const id = req.body.id;
+    const idPartida = req.params.idPartida;
+    const id = req.params.id;
 
     partidaModel.updatePartidaContext(id, idPartida).then((aa) => {
         res.status(200).json(aa);

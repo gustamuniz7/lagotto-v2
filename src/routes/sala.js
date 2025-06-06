@@ -15,7 +15,7 @@ router.get('/getContext/:idPartida', function(req, res){
   partidaController.obterPartidaContexto(req, res);
 });
 
-router.post('/updateContext', function (req, res) {
+router.get('/updateContext/:idPartida/:id', function (req, res) {
   partidaController.updateContextShowed(req, res);
 })
 
