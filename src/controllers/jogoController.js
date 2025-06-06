@@ -45,21 +45,25 @@ function criarPartida(req, res){
       }
   }
   const codigoTexto = codigo.join('');
-  salaModel.createRoom(codigoTexto).then(async (resultado) => {
-    const idPartida = resultado.id;
-    while(qtdeBomba > 0 || qtdeItensBons > 0){
-        let tipoItem = Number((Math.random()).toFixed());
-        let itemPos = Number((Math.random() * 100).toFixed());
-        if(tipoItem == 0){
-            qtdeBomba--;
-        } else {
-            qtdeItensBons--;
+  salaModel.createRoom(codigoTexto).then(() => {
+
+    salaModel.searchRoom(codigoTexto).then((resultado) => {
+
+        const idPartida = resultado[0].id;
+        while(qtdeBomba > 0 || qtdeItensBons > 0){
+            let tipoItem = Number((Math.random()).toFixed());
+            let itemPos = Number((Math.random() * 100).toFixed());
+            if(tipoItem == 0){
+                qtdeBomba--;
+            } else {
+                qtdeItensBons--;
+            }
+      
+            partidaModel.createItem(idPartida, tipoItem, itemPos, pontuacaoItem);
         }
-  
-        await partidaModel.createItem(idPartida, tipoItem, itemPos, pontuacaoItem);
-    }
+    })
   });
-  return codigo;
+  res.status(200).json(codigoTexto);
 }
 
 module.exports = {

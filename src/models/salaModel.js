@@ -6,13 +6,6 @@ const createRoom = (aleatoryCode) => {
         values ('${aleatoryCode}');
     `;
 
-    database.executar(sqlStatment);
-
-    sqlStatment = `
-        select id from partida
-        where codigo_partida = '${aleatoryCode}';
-    `;
-
     return database.executar(sqlStatment);
 }
 
