@@ -81,11 +81,18 @@
   function entrarSala() {
     var codigoInserido = ipt_codigo.value
 
-    if (codigoInserido == codigo) {
-      div_sala.innerHTML = `Entrando na sala`
-    } else {
-      div_sala.innerHTML = `Código incorreto`
-    }
+    fetch('/sala/enter/'+codigoInserido, {
+      method:'GET'
+    }).then(res => {
+      res.json().then(data => {
+        if(data.length == 0){
+          div_sala.innerHTML = `Código incorreto`;
+        }else{
+          sessionStorage.ID_PARTIDA = data[0].id;
+          window.location = 'index.html';
+        }
+      })
+    });
   }
 
 </script>

@@ -81,8 +81,15 @@ const obterPartidaContexto = (req, res) => {
     })
 }
 
+const entrarPartida = (req, res) => {
+    salaModel.searchRoom(req.params.cod).then(resposne => {
+        res.status(200).json(resposne);
+    })
+}
+
 module.exports = {
   criarPartida,
   obterPartidaContexto,
-  updateContextShowed
+  updateContextShowed,
+  entrarPartida
 }
